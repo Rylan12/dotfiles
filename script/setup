@@ -1,0 +1,8 @@
+#!/bin/zsh
+set -e
+
+# Link files from dot/* into the home directory as hidden files
+for f in $(ls -d ~/.dotfiles/dot/*); do ln -sfn $f ~/.$(basename $f); done
+
+# Link files from files/* into the home directory
+for f in $(ls -d ~/.dotfiles/files/*); do ln -sfn $f ~/$(basename $f); done
