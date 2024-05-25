@@ -1,0 +1,11 @@
+# Manually include directories that should be in git
+*
+!.gitignore
+!bat/
+!bat/**
+!git/
+!git/**
+!nvim/
+!nvim/**
+!tmux/
+!tmux/**
