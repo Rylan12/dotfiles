@@ -9,3 +9,5 @@
 !nvim/**
 !tmux/
 !tmux/**
+!zsh/
+!zsh/**

@@ -1,0 +1,5 @@
+alias ls='eza'
+alias l='ls'
+alias ll='ls -l'
+alias la='ls -la'
+alias l.='ls -d .*'
