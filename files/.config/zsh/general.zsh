@@ -22,3 +22,6 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 
 # Download youtube video as wav file
 alias ytwav='yt-dlp --extract-audio --audio-format wav'
+
+# Print out PATH
+alias path='echo "$PATH" | tr ":" "\n"'
