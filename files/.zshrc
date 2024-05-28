@@ -20,16 +20,17 @@ last_files=(${last[@]/%/.zsh})
 excluded_files=("${first_files[@]}" "${last_files[@]}")
 
 # Create a grep pattern to exclude files
+# For example, if ignoring foo.zsh and bar.zsh, the pattern will be "^(foo.zsh|bar.zsh)$"
 exclude_pattern=$(printf "|%s" "${excluded_files[@]}")
 exclude_pattern=${exclude_pattern:1}
-exclude_pattern="($(echo "$exclude_pattern" | sed 's/ /|/g'))" # In case we didn't explain something correctly, all whitespace becomes a bar
+exclude_pattern="^($(echo "$exclude_pattern" | sed 's/ /|/g'))$" # In case we didn't explain something correctly, all whitespace becomes a |
 
-# Find remaining files (only the base names) and trim extra whitespace
-remaining_files=$(find "$ZSHDIR" -type f -name "*.zsh" | grep -vE "$exclude_pattern" | xargs -n 1 basename | tr '\n' ' ')
-remaining_files=${remaining_files% }
+# Find remaining files (only the base names) and split by newlines into a list
+remaining_files=$(find "$ZSHDIR" -type f -name "*.zsh" | xargs -n 1 basename | grep -vE "$exclude_pattern")
+remaining_files=(${=remaining_files})
 
-# Load all files
-files=("${first_files[@]}" "${=remaining_files}" "${last_files[@]}")
-for file in "${files[@]}"; do
+# Combine lists in order and load the files
+files=("${first_files[@]}" "${remaining_files[@]}" "${last_files[@]}")
+for file in $files; do
   source "$ZSHDIR/$file"
 done
