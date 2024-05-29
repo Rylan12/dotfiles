@@ -1,57 +1,35 @@
 [alias]
-	dm = "!f() { git diff $(git merge-base origin/main HEAD); }; f"
-	graph = log --graph --format=line
-	graph-detail = log --graph --format=detail
-	graph-all = log --graph --format=line --all
-	graph-detail-all = log --graph --format=detail --all
-	root = rev-parse --show-toplevel
-	sync = !git pull --rebase upstream master && git push origin master
-	update-submodules = submodule update --init --recursive
-	upgrade-submodules = submodule update --init --remote
     hide = update-index --skip-worktree
+	root = rev-parse --show-toplevel
+    show-hidden = !git ls-files -v | grep '^S' | cut -c3-
     unhide = update-index --no-skip-worktree
     unhide-all = !git ls-files -v | grep '^S' | cut -c3- | xargs git unhide --
-    show-hidden = !git ls-files -v | grep '^S' | cut -c3-
-[color]
-	ui = auto
 [commit]
 	gpgSign = true
+	verbose = true
 [core]
 	autocrlf = input
 	safecrlf = true
-	editor = vim
-	pager = diff-so-fancy | less --tabs=4
+	editor = nvim
+	pager = bat --style=plain
 [credential]
 	helper = /usr/local/share/gcm-core/git-credential-manager
-[credential "https://dev.azure.com"]
-	useHttpPath = true
 [diff]
-	tool = vimdiff
-[difftool]
-	prompt = false
-	trustExitCode = true
-[filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	required = true
+	tool = nvimdiff
+	guitool = vscode
+[difftool "vscode"]
+	cmd = code --wait --diff $LOCAL $REMOTE
 [gpg]
 	program = /opt/homebrew/bin/gpg
+[gpg "ssh"]
+	allowedSignersFile = ~/.config/git/allowed_signers
 [init]
 	defaultBranch = main
-[interactive]
-	diffFilter = diff-so-fancy --patch
 [merge]
-	tool = vimdiff
-	conflictStyle = diff3
-[mergetool]
-	prompt = false
-	keepBackup = false
-[mergetool "vim"]
-	trustExitCode = true
-[pretty]
-	line = %C(bold blue)%h%C(reset) %C(bold green)(%ar)%C(reset) - %C(white)%s%C(reset) %C(dim white)-%C(reset) %C(bold dim white)%an%C(reset)%C(auto)%d%C(reset)
-	detail = %C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(auto)%d%C(reset)%n%C(white)%w(100,10,10)%B%C(reset)%w(,,)%C(dim white)-%C(reset) %C(bold dim white)%aN%C(reset) %C(dim white)<%aE> %C(reset)%n%n
+	tool = nvimdiff
+	guitool = vscode
+[mergetool "vscode"]
+	cmd = code --wait --merge $REMOTE $LOCAL $BASE $MERGED
 [pull]
 	rebase = true
 [tag]
@@ -60,7 +38,3 @@
 	name = Rylan Polster
 	email = rslpolster@gmail.com
 	signingKey = 46A744940CFF4D64
-
-# Import local settings
-[include]
-	path = ~/.gitconfig_local
