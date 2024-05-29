@@ -21,10 +21,13 @@ alias cp='cp -i'
 alias mv='mv -i'
 
 # iTerm2 shell integration
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+# test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
 # Download youtube video as wav file
 alias ytwav='yt-dlp --extract-audio --audio-format wav'
 
 # Print out PATH
 alias path='echo "$PATH" | tr ":" "\n"'
+
+# Edit secrets file
+alias secrets="nvim $ZSHDIR/secrets.zsh"
