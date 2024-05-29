@@ -1,0 +1,14 @@
+#!/bin/zsh
+# Fail out if any of the API commands fail
+set -e
+
+username="$1"
+name="$(gh api users/"$username" --jq .name --cache "5s")"
+email="$(gh api users/"$username" --jq .email --cache "5s")"
+
+if [[ -z "$email" ]]; then
+  email="$(gh api users/"$username" --jq .id --cache "5s")+$username@users.noreply.github.com"
+fi
+
+trailer="Co-authored-by: $name <$email>"
+echo "$trailer" | tee >(pbcopy)

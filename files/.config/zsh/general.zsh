@@ -1,3 +1,6 @@
+# Add custom executables to PATH
+export PATH="$HOME/bin:$PATH"
+
 # Use nvim regardless
 alias vim='nvim'
 
