@@ -20,9 +20,6 @@ alias cx='chmod +x'
 alias cp='cp -i'
 alias mv='mv -i'
 
-# iTerm2 shell integration
-# test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
-
 # Download youtube video as wav file
 alias ytwav='yt-dlp --extract-audio --audio-format wav'
 
