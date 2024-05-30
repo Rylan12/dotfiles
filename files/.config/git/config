@@ -1,9 +1,8 @@
 [alias]
     hide = update-index --skip-worktree
-	root = rev-parse --show-toplevel
-    show-hidden = !git ls-files -v | grep '^S' | cut -c3-
+    show-hidden = ! git ls-files -v | grep '^S' | cut -c3-
     unhide = update-index --no-skip-worktree
-    unhide-all = !git ls-files -v | grep '^S' | cut -c3- | xargs git unhide --
+    unhide-all = ! git ls-files -v | grep '^S' | cut -c3- | xargs git unhide --
 [commit]
 	gpgSign = true
 	verbose = true

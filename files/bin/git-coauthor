@@ -1,0 +1,24 @@
+#!/bin/zsh
+# Fail out if any of the API commands fail.
+# Note: this overrides the git-coauthor provided by git-extras
+set -e -o pipefail
+
+if [[ "$#" = 1 ]]; then
+  username="$1"
+  name="$(gh api users/"$username" --jq .name --cache "5s")"
+  email="$(gh api users/"$username" --jq .email --cache "5s")"
+
+  if [[ -z "$email" ]]; then
+    email="$(gh api users/"$username" --jq .id --cache "5s")+$username@users.noreply.github.com"
+  fi
+elif [[ "$#" = 2 ]]; then
+  name="$1"
+  email="$2"
+else
+  echo "Usage: git coauthor <username> | <name> <email>"
+  exit 1
+fi
+
+echo "Co-authored-by: $name <$email>" | tee >(pbcopy)
+
+"$HOMEBREW_PREFIX"/bin/git-coauthor "$name" "$email"
