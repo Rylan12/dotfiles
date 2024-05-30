@@ -4,7 +4,7 @@
 # Source: https://github.com/junegunn/fzf/blob/master/ADVANCED.md#switching-between-ripgrep-mode-and-fzf-mode-using-a-single-key-binding
 # shellcheck disable=SC2016
 rm -f /tmp/rg-fzf-{r,f}
-RG_PREFIX="rg --column --line-number --no-heading --color=always --smart-case --hidden "
+RG_PREFIX="rg --column --line-number --no-heading --color=always --smart-case --ignore --hidden "
 INITIAL_QUERY="${*:-}"
 : | fzf --ansi --disabled --query "$INITIAL_QUERY" \
   --bind "start:reload:$RG_PREFIX {q}" \
