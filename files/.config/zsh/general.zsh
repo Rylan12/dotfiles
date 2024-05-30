@@ -40,6 +40,9 @@ alias -g NE="2> /dev/null"
 alias -g NUL="> /dev/null 2>&1"
 alias -g P="| pbcopy"
 alias -g HOME="$HOME"
+alias -g ...='../..'
+alias -g ....='../../..'
+alias -g .....='../../../..'
 
 # Download youtube video as wav file
 alias ytwav='yt-dlp --extract-audio --audio-format wav'
