@@ -44,6 +44,11 @@ alias -g ...='../..'
 alias -g ....='../../..'
 alias -g .....='../../../..'
 
+# Unset GEM_HOME so tmuxinator doesn't see its Homebrew gem home as the user's
+# See https://github.com/tmuxinator/tmuxinator/issues/841
+unset -v GEM_HOME
+alias mux='tmuxinator'
+
 # Download youtube video as wav file
 alias ytwav='yt-dlp --extract-audio --audio-format wav'
 

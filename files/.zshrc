@@ -8,10 +8,6 @@
 first=(homebrew completions)
 last=(appearance plugins)
 
-# Find remaining modules
-
-ZSHDIR="$XDG_CONFIG_HOME/zsh"
-
 # Add the `.zsh` extension to the FIRST and LAST arrays
 first_files=(${first[@]/%/.zsh})
 last_files=(${last[@]/%/.zsh})
@@ -26,6 +22,7 @@ exclude_pattern=${exclude_pattern:1}
 exclude_pattern="^($(echo "$exclude_pattern" | sed 's/ /|/g'))$" # In case we didn't explain something correctly, all whitespace becomes a |
 
 # Find remaining files (only the base names) and split by newlines into a list
+ZSHDIR="$XDG_CONFIG_HOME/zsh"
 remaining_files=$(find "$ZSHDIR" -type f -name "*.zsh" | xargs -n 1 basename | grep -vE "$exclude_pattern")
 remaining_files=(${=remaining_files})
 
