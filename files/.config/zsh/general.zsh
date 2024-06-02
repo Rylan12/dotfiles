@@ -29,7 +29,9 @@ alias mv='mv -i'
 alias rm='rm -i'
 
 # Make and cd into a directory
-alias mcd='mkdir -p && cd'
+mcd() {
+  mkdir "$1" && cd "$1"
+}
 
 # Global aliases
 alias -g H='| head'
@@ -58,8 +60,11 @@ alias ytwav='yt-dlp --extract-audio --audio-format wav'
 # Print out PATH
 alias path='echo "$PATH" | tr ":" "\n"'
 
+# Open zsh configuration in editor
+alias zshconfig="$EDITOR $ZSHDIR"
+
 # Edit secrets file
-alias secrets="nvim $ZSHDIR/secrets.zsh"
+alias secrets="$EDITOR $ZSHDIR/secrets.zsh"
 
 # Reload configuration
 alias src="source $HOME/.zshrc"
