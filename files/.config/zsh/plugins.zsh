@@ -7,8 +7,8 @@ source "$HOMEBREW_PREFIX/share/zsh-autopair/autopair.zsh"
 # git-extras completions
 source "$HOMEBREW_PREFIX/opt/git-extras/share/git-extras/git-extras-completion.zsh"
 
-# z
-source "$HOMEBREW_PREFIX/etc/profile.d/z.sh"
+# zoxide (z command)
+_evalcache zoxide init zsh
 
 # url-quote-magic
 autoload -Uz url-quote-magic

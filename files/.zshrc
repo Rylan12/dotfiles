@@ -5,7 +5,7 @@
 # Modules listed in the LAST array will be loaded last (in order).
 # All remaining modules will be loaded in alphabetical order in between.
 
-first=(homebrew completions)
+first=(homebrew completions evalcache)
 last=(appearance plugins)
 
 # Add the `.zsh` extension to the FIRST and LAST arrays

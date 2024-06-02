@@ -1,5 +1,5 @@
 # GitHub copilot CLI
-eval "$(gh copilot alias -- zsh)"
+_evalcache gh copilot alias -- zsh
 
 alias gh='PAGER= gh' # remove pager
 alias prc='gh pr checkout'
