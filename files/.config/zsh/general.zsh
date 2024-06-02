@@ -28,6 +28,9 @@ alias cp='cp -i'
 alias mv='mv -i'
 alias rm='rm -i'
 
+# Make and cd into a directory
+alias mcd='mkdir -p && cd'
+
 # Global aliases
 alias -g H='| head'
 alias -g T='| tail'
