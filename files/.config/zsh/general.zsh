@@ -57,6 +57,9 @@ alias mux='tmuxinator'
 # Download youtube video as wav file
 alias ytwav='yt-dlp --extract-audio --audio-format wav'
 
+# Lazygit shortcut
+alias lg='lazygit'
+
 # Print out PATH
 alias path='echo "$PATH" | tr ":" "\n"'
 
