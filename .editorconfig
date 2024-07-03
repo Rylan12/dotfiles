@@ -1,0 +1,14 @@
+# This is the top-most EditorConfig file
+root = true
+
+# General
+indent_style = space
+indent_size = 2
+end_of_line = lf
+trim_trailing_whitespace = true
+insert_final_newline = true
+
+# Git's configration files should use tabs for indentation.
+[files/.config/git/{config,school.config}]
+indent_style = tab
+indent_size = 4

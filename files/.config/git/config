@@ -1,8 +1,11 @@
+# This file is indented using tabs, unlike most of my files.
+# This is because git uses tabs it writes config options.
+
 [alias]
-    hide = update-index --skip-worktree
-    show-hidden = ! git ls-files -v | grep '^S' | cut -c3-
-    unhide = update-index --no-skip-worktree
-    unhide-all = ! git ls-files -v | grep '^S' | cut -c3- | xargs git unhide --
+	hide = update-index --skip-worktree
+	show-hidden = ! git ls-files -v | grep '^S' | cut -c3-
+	unhide = update-index --no-skip-worktree
+	unhide-all = ! git ls-files -v | grep '^S' | cut -c3- | xargs git unhide --
 [commit]
 	gpgSign = true
 	verbose = true
@@ -22,6 +25,7 @@
 	program = /opt/homebrew/bin/gpg
 [gpg "ssh"]
 	allowedSignersFile = ~/.config/git/allowed_signers
+	program = /Applications/1Password.app/Contents/MacOS/op-ssh-sign
 [init]
 	defaultBranch = main
 [merge]
@@ -39,3 +43,5 @@
 	name = Rylan Polster
 	email = rslpolster@gmail.com
 	signingKey = 46A744940CFF4D64
+[includeIf "gitdir:~/School/"]
+	path = school.inc
