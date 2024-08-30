@@ -1,8 +1,11 @@
 # FZF has a lot of customization, so this file is extracted.
 # Much of the customization comes from the FZF documentation: https://github.com/junegunn/fzf
 
-# First, source FZF
-source <(fzf --zsh)
+# zsh-vi-mode overwrites some key bindings, so let's source fzf after zsh-vi-mode is initialized.
+# zsh-vi-mode will automatically call this function at the right time.
+function zvm_after_init() {
+  source <(fzf --zsh)
+}
 
 # Use fd because it's faster than find
 export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix --hidden --follow --exclude .git'
