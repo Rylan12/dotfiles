@@ -1,10 +1,10 @@
 alias cdgr='cd "$(git root)"'
 alias cddf="cd '$HOME/.dotfiles/'"
 alias des="cd '$HOME/Desktop/'"
-alias dev="cd '$HOME/Development/'"
+alias dev="cd '$HOME/Developer/'"
 alias doc="cd '$HOME/Documents/'"
 alias dow="cd '$HOME/Downloads/'"
-alias hom="cd '$HOME/Development/homebrew/'"
+alias hom="cd '$HOME/Developer/homebrew/'"
 alias prj="cd '$HOME/Projects/'"
 alias sch="cd '$HOME/School/'"
 alias brepo="cd '$HOMEBREW_PREFIX'"
