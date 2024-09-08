@@ -1,0 +1,25 @@
+#compdef work
+
+_work() {
+  local workspaces=()
+
+  for workspace in "${HOME}/.vscode-workspaces/"*; do
+    # If t is a symlink, the description should be the full path.
+    # Otherwise, if the file ends in .code-workspace, the description should be the basename.
+    if [[ -L "${workspace}" ]]; then
+      real="$(realpath "${workspace}")"
+      # Replace the home directory with ~/
+      if [[ "${real}" == "${HOME}/"* ]]; then
+        real="~/${real##${HOME}/}"
+      fi
+      workspaces+=("${workspace:t}[${real}]")
+    elif [[ "${workspace}" == *.code-workspace ]]; then
+      base="$(basename "${workspace}")"
+      workspaces+=("${base%.*}[${base}]")
+    fi
+  done
+
+  _values "workspaces" $workspaces[@]
+}
+
+_work "$@"
