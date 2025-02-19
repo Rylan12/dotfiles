@@ -6,3 +6,6 @@ debug
 foo.*
 *.log
 data
+
+# I don't need the specific versions saved since they update frequently
+lazy-lock.json
