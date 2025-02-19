@@ -1,12 +1,14 @@
-# OCaml init (for CPSC 421)
-[[ ! -r '/Users/rylanpolster/.opam/opam-init/init.zsh' ]] || source '/Users/rylanpolster/.opam/opam-init/init.zsh' > /dev/null 2> /dev/null
+# Add act installation to path
+export ACT_HOME="/opt/cad"
+export PATH="${PATH}:${ACT_HOME}/bin"
 
 # Alias for opening a VNC session for EE 426
 alias vnc426="open vnc://:userpass@localhost:8500"
 
 # CD Aliases for school directories
-alias game-engines="cd ${HOME}/School/cs411/monorepo-Rylan12"
-alias security="cd ${HOME}/School/cs413"
-alias compilers="cd ${HOME}/School/cs421/current"
-alias graphics="cd ${HOME}/School/cs478"
 alias silicon="cd ${HOME}/School/ee426"
+alias parallel="cd ${HOME}/School/cs424"
+alias robotics="cd ${HOME}/School/ee442"
+alias ling="cd ${HOME}/School/ling384"
+alias halo="cd ${HOME}/School/HALO"
+alias avlsi="cd ${HOME}/School/asyncvlsi"
