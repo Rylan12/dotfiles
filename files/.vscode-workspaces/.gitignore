@@ -1,0 +1,7 @@
+# Ignore everything unless we explicitly include it
+*
+!.gitignore
+
+# These should be in the same place on every machine
+!dotfiles
+!homebrew
