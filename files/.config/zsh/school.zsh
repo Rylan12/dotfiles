@@ -1,6 +1,5 @@
 # Add act installation to path
-export ACT_HOME="/opt/cad"
-export PATH="${PATH}:${ACT_HOME}/bin"
+export ACT_HOME="${HOMEBREW_PREFIX}/opt/actflow"
 
 # Alias for opening a VNC session for EE 426
 alias vnc426="open vnc://:userpass@localhost:8500"
