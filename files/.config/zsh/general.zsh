@@ -40,6 +40,7 @@ alias -g G='| grep'
 alias -g L="| less"
 alias -g B="| bat"
 alias -g J="| jq -C | less"
+alias -g ST='&& echo TRUE || echo FALSE'
 alias -g LL="2>&1 | less"
 alias -g CA="2>&1 | cat -A"
 alias -g NE="2> /dev/null"
