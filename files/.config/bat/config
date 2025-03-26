@@ -6,7 +6,8 @@
 # for a list of all available themes
 # The Tokyo Night theme is sourced from https://github.com/folke/tokyonight.nvim/tree/main/extras/sublime
 # Install it using the instructions at https://github.com/sharkdp/bat#adding-new-themes
---theme="tokyonight_moon"
+--theme-dark="tokyonight_moon"
+--theme-light="tokyonight_day"
 
 # Enable this to use italic text on the terminal. This is not supported on all
 # terminal emulators (like tmux, by default):
