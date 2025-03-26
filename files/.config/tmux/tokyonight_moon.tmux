@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # TokyoNight colors for Tmux
-# Sourced from https://github.com/folke/tokyonight.nvim/blob/main/extras/tmux
+# Sourced from https://github.com/folke/tokyonight.nvim/tree/main/extras/tmux
 
 set -g mode-style "fg=#82aaff,bg=#3b4261"
 
