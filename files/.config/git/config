@@ -6,6 +6,10 @@
 	show-hidden = ! git ls-files -v | grep '^S' | cut -c3-
 	unhide = update-index --no-skip-worktree
 	unhide-all = ! git ls-files -v | grep '^S' | cut -c3- | xargs git unhide --
+[branch]
+	sort = -committerdate
+[column]
+	ui = auto
 [commit]
 	gpgSign = true
 	verbose = true
@@ -17,15 +21,25 @@
 [credential]
 	helper = /usr/local/share/gcm-core/git-credential-manager
 [diff]
-	tool = nvimdiff
+	algorithm = histogram
+	colorMoved = plain
 	guitool = vscode
+	mnemonicPrefix = true
+	renames = true
+	tool = nvimdiff
 [difftool "vscode"]
 	cmd = code --wait --diff $LOCAL $REMOTE
+[fetch]
+	all = true
+	prune = true
+	pruneTags = true
 [gpg]
 	format = ssh
 [gpg "ssh"]
 	allowedSignersFile = ~/.config/git/allowed_signers
 	program = /Applications/1Password.app/Contents/MacOS/op-ssh-sign
+[help]
+	autocorrect = prompt
 [init]
 	defaultBranch = main
 [merge]
@@ -35,10 +49,19 @@
 	cmd = code --wait --merge $REMOTE $LOCAL $BASE $MERGED
 [pull]
 	rebase = true
+[push]
+	autoSetupRemote = true
+	followTags = true
+[rebase]
+	autoSquash = true
+	autoStash = true
+	updateRefs = true
 [rerere]
+	autoupdate = true
 	enabled = true
 [tag]
 	gpgSign = true
+	sort = version:refname
 [user]
 	name = Rylan Polster
 	email = rslpolster@gmail.com
