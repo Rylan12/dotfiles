@@ -1,8 +1,24 @@
-#!/bin/zsh
-set -e
+#!/bin/bash
+set -eu
+
+# Detect the dotfiles directory based on this script's location
+DOTFILES_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 
 # Link files from files/* into the home directory
-for f in $(ls -d ~/.dotfiles/files/*); do ln -sfn $f ~/$(basename $f); done
+# If a file exists and is not the correct symlink, back it up as <file>.bk
+find "$DOTFILES_DIR/files" -mindepth 1 -maxdepth 1 -print0 | while IFS= read -r -d '' f; do
+  name="$(basename "$f")"
+  target="$HOME/$name"
+
+  # Skip .DS_Store files
+  [ "$name" = ".DS_Store" ] && continue
+
+  if [ -e "$target" ] && [ "$(readlink -- "$target")" != "$f" ]; then
+    mv "$target" "$target.bk"
+    printf 'Warning: Overwriting %s\n' "$target"
+  fi
+  ln -sfn "$f" "$target"
+done
 
 # Correct permissions for .gnupg folder
-chmod 700 ~/.gnupg
+chmod 700 "$HOME/.gnupg"
