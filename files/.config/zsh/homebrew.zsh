@@ -13,7 +13,7 @@ elif [[ -f /home/linuxbrew/.linuxbrew/bin/brew ]]; then
 fi
 
 # If there's no Homebrew executable found, exit
-if [[ -n "${HOMEBREW_EXECUTABLE-}" ]]; then
+if [[ -z "${HOMEBREW_EXECUTABLE-}" ]]; then
   printf 'Warning: Homebrew was not found. This will likely cause issues with your shell setup.\n'
   return 1
 fi
