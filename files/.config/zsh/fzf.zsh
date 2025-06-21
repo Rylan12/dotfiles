@@ -1,3 +1,6 @@
+# Return if fzf is not installed
+command_exists fzf || return
+
 # FZF has a lot of customization, so this file is extracted.
 # Much of the customization comes from the FZF documentation: https://github.com/junegunn/fzf
 

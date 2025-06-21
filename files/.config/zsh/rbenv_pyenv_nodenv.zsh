@@ -1,11 +1,17 @@
 # rbenv
-_evalcache rbenv init - zsh
+if command_exists rbenv; then
+  _evalcache rbenv init - zsh
+fi
 
 # pyenv
-export PYENV_ROOT="$HOME/.pyenv"
-command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
-_evalcache pyenv init -
-_evalcache pyenv virtualenv-init -
+if command_exists pyenv; then
+  export PYENV_ROOT="$HOME/.pyenv"
+  export PATH="$PYENV_ROOT/bin:$PATH"
+  _evalcache pyenv init -
+  _evalcache pyenv virtualenv-init -
+fi
 
 # nodenv
-_evalcache nodenv init -
+if command_exists nodenv; then
+  _evalcache nodenv init -
+fi

@@ -26,6 +26,9 @@
 # shellcheck disable=SC2039
 [[ $0 = - ]] && return
 
+# Return if fzf is not installed
+command_exists fzf || return
+
 __fzf_git_color() {
   if [[ -n $NO_COLOR ]]; then
     echo never

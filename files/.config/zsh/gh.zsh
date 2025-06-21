@@ -1,3 +1,6 @@
+# Return if gh is not installed
+command_exists gh || return
+
 # GitHub copilot CLI
 _evalcache gh copilot alias -- zsh
 

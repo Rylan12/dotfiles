@@ -1,3 +1,6 @@
+# Return if not on macOS
+os_is_macos || return
+
 # These functions come from https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/macos
 
 # Show/hide hidden files in the Finder

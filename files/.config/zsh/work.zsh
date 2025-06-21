@@ -1,3 +1,6 @@
+# Return if code is not installed
+command_exists code || return
+
 # Open a pre-saved vscode workspace
 work() {
   WORKSPACE_DIR="$HOME/.vscode-workspaces/"
