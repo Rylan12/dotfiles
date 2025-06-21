@@ -1,5 +1,5 @@
 #!/bin/bash
-set -e
+set -eu
 
 # Check if Homebrew is installed by checking the following locations:
 # 1. The `brew` command is available in the PATH
@@ -7,7 +7,7 @@ set -e
 # 3. The default Homebrew installation paths for macOS and Linux
 if command -v brew >/dev/null 2>&1; then
   HOMEBREW_EXECUTABLE="$(command -v brew)"
-elif [[ -n "${HOMEBREW_PREFIX}" && -f "${HOMEBREW_PREFIX}/bin/brew" ]]; then
+elif [[ -n "${HOMEBREW_PREFIX-}" && -f "${HOMEBREW_PREFIX}/bin/brew" ]]; then
   HOMEBREW_EXECUTABLE="${HOMEBREW_PREFIX}/bin/brew"
 elif [[ -f /opt/homebrew/bin/brew ]]; then
   HOMEBREW_EXECUTABLE="/opt/homebrew/bin/brew"

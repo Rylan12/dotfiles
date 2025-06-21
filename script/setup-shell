@@ -1,0 +1,7 @@
+#!/bin/bash
+set -eu
+
+# If we're in a GitHub Codespace, we should use zsh
+if [[ -n "$CODESPACES" ]]; then
+  sudo chsh "$(id -un)" --shell "/usr/bin/zsh"
+fi

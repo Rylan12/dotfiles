@@ -20,5 +20,6 @@ find "$DOTFILES_DIR/files" -mindepth 1 -maxdepth 1 -print0 | while IFS= read -r 
   ln -sfn "$f" "$target"
 done
 
-# Run the setup script for Homebrew
+# Run the remaining setup scripts
+"$DOTFILES_DIR/script/setup-shell"
 "$DOTFILES_DIR/script/setup-homebrew"
