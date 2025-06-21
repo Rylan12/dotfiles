@@ -20,8 +20,5 @@ find "$DOTFILES_DIR/files" -mindepth 1 -maxdepth 1 -print0 | while IFS= read -r 
   ln -sfn "$f" "$target"
 done
 
-# Correct permissions for .gnupg folder
-chmod 700 "$HOME/.gnupg"
-
 # Run the setup script for Homebrew
 "$DOTFILES_DIR/script/setup-homebrew"
