@@ -15,6 +15,9 @@ jview() {
     fi
   fi
 }
+jcat() {
+  cat $1 | jq .
+}
 # View formula/cask metadata easily
 fj() {
   jview "https://formulae.brew.sh/api/formula/${1}.json"
