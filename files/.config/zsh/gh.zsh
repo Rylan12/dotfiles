@@ -2,7 +2,9 @@
 command_exists gh || return
 
 # GitHub copilot CLI
-_evalcache gh copilot alias -- zsh
+if gh extension list | grep -q copilot; then
+  _evalcache gh copilot alias -- zsh
+fi
 
 alias gh='PAGER= gh' # remove pager
 alias prc='gh pr checkout'
