@@ -22,3 +22,6 @@ done
 
 # Correct permissions for .gnupg folder
 chmod 700 "$HOME/.gnupg"
+
+# Run the setup script for Homebrew
+"$DOTFILES_DIR/script/setup-homebrew"

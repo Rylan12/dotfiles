@@ -1,0 +1,39 @@
+#!/bin/bash
+set -e
+
+# Check if Homebrew is installed by checking the following locations:
+# 1. The `brew` command is available in the PATH
+# 2. The HOMEBREW_PREFIX environment variable is set and points to a valid Homebrew installation
+# 3. The default Homebrew installation paths for macOS and Linux
+if command -v brew >/dev/null 2>&1; then
+  HOMEBREW_EXECUTABLE="$(command -v brew)"
+elif [[ -n "${HOMEBREW_PREFIX}" && -f "${HOMEBREW_PREFIX}/bin/brew" ]]; then
+  HOMEBREW_EXECUTABLE="${HOMEBREW_PREFIX}/bin/brew"
+elif [[ -f /opt/homebrew/bin/brew ]]; then
+  HOMEBREW_EXECUTABLE="/opt/homebrew/bin/brew"
+elif [[ -f /home/linuxbrew/.linuxbrew/bin/brew ]]; then
+  HOMEBREW_EXECUTABLE="/home/linuxbrew/.linuxbrew/bin/brew"
+else
+  # Intentionally don't expand characters
+  # shellcheck disable=SC2016
+  printf '%s\n' 'Homebrew was not found. Please set $HOMEBREW_PREFIX or install it using the following command:'
+  # Intentionally don't expand characters
+  # shellcheck disable=SC2016
+  printf '%s\n' '  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"'
+  exit 1
+fi
+
+# Get a list of installed formulae (one per line)
+installed="$($HOMEBREW_EXECUTABLE list --formula -1)"
+
+# TODO: this should probably become a Brewfile in the future
+required_packages=("evalcache" "zsh-git-escape-magic")
+
+# Install missing requirements
+# Note: for now, all requirements come from the rylan12/personal tap and are installed with --HEAD
+for package in "${required_packages[@]}"; do
+  if ! printf '%s\n' "$installed" | grep -qx "$package"; then
+    echo "Installing $package..."
+    "$HOMEBREW_EXECUTABLE" install --HEAD "rylan12/personal/$package"
+  fi
+done
