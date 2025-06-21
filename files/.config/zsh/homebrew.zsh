@@ -26,6 +26,12 @@ export HOMEBREW_GITHUB_PACKAGES_USER="Rylan12"
 export HOMEBREW_NO_AUTO_UPDATE=1
 export HOMEBREW_NO_ENV_HINTS=1
 eval "$($HOMEBREW_EXECUTABLE shellenv)"
-FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
+
+# If brew was already in the PATH before running `brew shellenv`, `HOMEBREW_PREFIX` will not be set.
+if [[ -z "${HOMEBREW_PREFIX-}" ]]; then
+  HOMEBREW_PREFIX="$(brew --prefix)"
+fi
+
+FPATH="$HOMEBREW_PREFIX/share/zsh/site-functions:$FPATH"
 
 alias -g APIOFF='HOMEBREW_NO_INSTALL_FROM_API=1'
