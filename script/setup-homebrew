@@ -23,17 +23,5 @@ else
   exit 1
 fi
 
-# Get a list of installed formulae (one per line)
-installed="$($HOMEBREW_EXECUTABLE list --formula -1)"
-
-# TODO: this should probably become a Brewfile in the future
-required_packages=("evalcache" "zsh-git-escape-magic")
-
-# Install missing requirements
-# Note: for now, all requirements come from the rylan12/personal tap and are installed with --HEAD
-for package in "${required_packages[@]}"; do
-  if ! printf '%s\n' "$installed" | grep -qx "$package"; then
-    echo "Installing $package..."
-    "$HOMEBREW_EXECUTABLE" install --HEAD "rylan12/personal/$package"
-  fi
-done
+BREWFILE_PATH="$(dirname "$0")/Brewfile"
+$HOMEBREW_EXECUTABLE bundle install --file="$BREWFILE_PATH" --no-upgrade
