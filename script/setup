@@ -22,4 +22,5 @@ done
 
 # Run the remaining setup scripts
 "$DOTFILES_DIR/script/setup-shell"
+"$DOTFILES_DIR/script/setup-git"
 "$DOTFILES_DIR/script/setup-homebrew"

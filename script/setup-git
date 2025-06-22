@@ -1,0 +1,42 @@
+#!/bin/bash
+set -eu
+
+# If bat is not installed, override the pager to use less
+if ! command -v bat &> /dev/null; then
+  printf "bat not found, removing bat references from git configuration.\n"
+  git config --global core.pager "less -FRX"
+fi
+
+# If nvim is not installed, unset editor and diff/merge tools
+if ! command -v nvim &> /dev/null; then
+  printf "nvim not found, removing nvim references from git configuration.\n"
+  git config --global --unset core.editor || true
+  git config --global --unset diff.tool || true
+  git config --global --unset merge.tool || true
+fi
+
+# If VS Code is not installed, unset GUI diff and merge tools
+if ! command -v code &> /dev/null; then
+  printf "VS Code not found, removing VS Code references from git configuration.\n"
+  git config --global --unset diff.guitool || true
+  git config --global --unset difftool.vscode.cmd || true
+  git config --global --unset merge.guitool || true
+  git config --global --unset mergetool.vscode.cmd || true
+fi
+
+# If 1Password is not installed, unset GPG SSH signing program
+if [[ ! -x "/Applications/1Password.app/Contents/MacOS/op-ssh-sign" ]]; then
+  printf "1Password not found, removing 1Password references from git configuration.\n"
+  git config --global --unset gpg.ssh.program || true
+fi
+
+# Configure git for GitHub Codespaces if detected
+# Signing is done automatically, but we need to remove our signing configuration.
+# See https://docs.github.com/en/codespaces/troubleshooting/troubleshooting-gpg-verification-for-github-codespaces#errors-caused-by-conflicting-git-configuration
+if [[ -n "${CODESPACES:-}" ]]; then
+  printf "GitHub Codespace detected, configuring git for commit signing using GitHub's key.\n"
+  git config --global --unset credential.helper || true
+  git config --global --unset gpg.program || true
+  git config --global --unset gpg.format || true
+  git config --global --unset user.signingKey || true
+fi
