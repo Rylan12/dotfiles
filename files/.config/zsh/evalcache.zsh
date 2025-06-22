@@ -8,7 +8,7 @@ evalcache-clear() {
 }
 
 # Clear the cache automatically if its been a day since the last flush or the file doesn't exist (but the directory does)
-if [[ -f "$ZSH_EVALCACHE_DIR/.last_flushed" ]] && [[ -n "$(find "$ZSH_EVALCACHE_DIR/.last_flushed" -mtime +1d)" ]]; then
+if [[ -f "$ZSH_EVALCACHE_DIR/.last_flushed" ]] && [[ -n "$(find "$ZSH_EVALCACHE_DIR/.last_flushed" -mtime +1)" ]]; then
   echo "evalcache: flushing cache because 24 hours have passed since the last flush"
   evalcache-clear
 elif [[ ! -f "$ZSH_EVALCACHE_DIR/.last_flushed" ]] && [[ -d "$ZSH_EVALCACHE_DIR" ]]; then
