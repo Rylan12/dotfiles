@@ -1,6 +1,7 @@
 tap "rylan12/personal"
 
 brew "git-extras"
+brew "pure"
 brew "zoxide"
 brew "zsh-autopair"
 brew "zsh-autosuggestions"
