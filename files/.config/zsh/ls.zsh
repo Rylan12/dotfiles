@@ -1,7 +1,8 @@
-# Return if bat is not installed
-command_exists eza || return
+# Only alias ls if eza is installed
+if command_exists eza; then
+  alias ls='eza'
+fi
 
-alias ls='eza'
 alias l='ls'
 alias ll='ls -l'
 alias la='ls -la'
