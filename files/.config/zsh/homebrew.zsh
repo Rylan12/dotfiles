@@ -26,6 +26,7 @@ export HOMEBREW_FORCE_BREWED_GIT=1
 export HOMEBREW_GITHUB_PACKAGES_USER="Rylan12"
 export HOMEBREW_NO_AUTO_UPDATE=1
 export HOMEBREW_NO_ENV_HINTS=1
+export HOMEBREW_VERIFY_ATTESTATIONS=1
 eval "$($HOMEBREW_EXECUTABLE shellenv)"
 
 # If brew was already in the PATH before running `brew shellenv`, `HOMEBREW_PREFIX` will not be set.
