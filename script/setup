@@ -1,6 +1,12 @@
 #!/bin/bash
 set -eu
 
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+ORANGE='\033[0;33m'
+CYAN='\033[0;36m'
+NC='\033[0m'
+
 # Detect the dotfiles directory based on this script's location
 DOTFILES_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 
@@ -11,12 +17,19 @@ find "$DOTFILES_DIR/files" -mindepth 1 -maxdepth 1 -print0 | while IFS= read -r 
   target="$HOME/$name"
 
   # Skip .DS_Store files
-  [ "$name" = ".DS_Store" ] && continue
+  [[ "$name" = ".DS_Store" ]] && continue
 
-  if [ -e "$target" ] && [ "$(readlink -- "$target")" != "$f" ]; then
+  if [[ -e "$target" ]]; then
+    if [[ "$(readlink -- "$target")" != "$f" ]]; then
     mv "$target" "$target.bk"
-    printf 'Warning: Overwriting %s\n' "$target"
+      printf " ${RED}Warning${NC}  Overwriting ${CYAN}%s${NC}\n" "$target"
+    else
+      printf "${ORANGE}Skipping${NC}  %s\n" "$name"
+      continue
+    fi
   fi
+
+  printf " ${GREEN}Linking${NC}  %s\n" "$name"
   ln -sfn "$f" "$target"
 done
 

@@ -1,13 +1,6 @@
-tap "rylan12/personal"
-
-brew "git-extras"
 brew "pure"
-brew "zoxide"
-brew "zsh-autopair"
 brew "zsh-autosuggestions"
 brew "zsh-syntax-highlighting"
 brew "zsh-vi-mode"
-brew "rylan12/personal/evalcache", args: ["HEAD"]
-brew "rylan12/personal/zsh-git-escape-magic", args: ["HEAD"]
 
 cask "font-monaspace"
