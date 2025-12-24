@@ -1,11 +1,6 @@
 # Return if gh is not installed
 command_exists gh || return
 
-# GitHub copilot CLI
-if gh extension list | grep -q copilot; then
-  _evalcache gh copilot alias -- zsh
-fi
-
 alias gh='PAGER= gh' # remove pager
 alias prc='gh pr checkout'
 alias prv='gh pr view'
