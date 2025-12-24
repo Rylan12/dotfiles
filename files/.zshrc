@@ -1,3 +1,8 @@
+profile_mode=0
+if [[ "$profile_mode" -ne 0 ]]; then
+  zmodload zsh/zprof
+fi
+
 # Loaded for all zsh interactive shells
 
 # The configuration is divided modularly into various *.zsh files in ~/.config/zsh.
@@ -31,3 +36,7 @@ files=("${first_files[@]}" "${remaining_files[@]}" "${last_files[@]}")
 for file in $files; do
   source "$ZSHDIR/$file"
 done
+
+if [[ "$profile_mode" -ne 0 ]]; then
+  zprof
+fi
