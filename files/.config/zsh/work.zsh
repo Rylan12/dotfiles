@@ -1,6 +1,8 @@
-#!/bin/zsh
+# Return if `code` is not installed
+command_exists code || return
 
 # Open a pre-saved vscode workspace
+# Needs to be a shell function so that `cd` works properly
 work() {
   WORKSPACE_DIR="$HOME/.vscode-workspaces/"
   [[ $# -eq 0 ]] && cd $WORKSPACE_DIR && return
