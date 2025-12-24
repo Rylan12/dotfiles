@@ -19,7 +19,7 @@ I want my configuration to be:
 
 - `.zshenv` sets environment variables that should be available to all `zsh` invocations, including scripts and non-login, non-interactive shells.
 - `.zshrc` loads individual configuration modules. It has variables to set the order in which modules are loaded.
-- `.zsh/` is a directory that contains the individual configuration modules. All `*.zsh` files in this directory are loaded.
+- `.config/zsh/` is a directory that contains the individual configuration modules. All `*.zsh` files in this directory are loaded.
 - `.bin/` is a directory that contains scripts that are added to the `PATH`. Use this for scripts that are better suited to be stand-alone executables than `zsh` functions. For example, if they should use `set -e` or something other than `zsh`.
 
 #### bash
