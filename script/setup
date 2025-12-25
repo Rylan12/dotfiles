@@ -5,35 +5,114 @@ RED='\033[0;31m'
 GREEN='\033[0;32m'
 ORANGE='\033[0;33m'
 CYAN='\033[0;36m'
+MAGENTA='\033[0;35m'
 NC='\033[0m'
+
+# Parse command line arguments
+DRY_RUN=false
+if [[ "${1:-}" == "-n" || "${1:-}" == "--dry-run" ]]; then
+  DRY_RUN=true
+  printf "${MAGENTA}DRY RUN MODE${NC}\n"
+fi
 
 # Detect the dotfiles directory based on this script's location
 DOTFILES_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+FILES_DIR="$DOTFILES_DIR/files"
 
-# Link files from files/* into the home directory
-# If a file exists and is not the correct symlink, back it up as <file>.bk
-find "$DOTFILES_DIR/files" -mindepth 1 -maxdepth 1 -print0 | while IFS= read -r -d '' f; do
-  name="$(basename "$f")"
-  target="$HOME/$name"
-
-  # Skip .DS_Store files
-  [[ "$name" = ".DS_Store" ]] && continue
+link() {
+  local f="$1"
+  local target="$2"
+  local name="${1##"$FILES_DIR/"}"
 
   if [[ -e "$target" ]]; then
     if [[ "$(readlink -- "$target")" != "$f" ]]; then
-    mv "$target" "$target.bk"
-      printf " ${RED}Warning${NC}  Overwriting ${CYAN}%s${NC}\n" "$target"
+      printf " ${RED}Warning${NC}  Backed up existing ${CYAN}%s${NC} to ${CYAN}%s.bk${NC}\n" "$target" "$target"
+      if [[ "$DRY_RUN" == true ]]; then
+        printf "${MAGENTA}mv %q %q${NC}\n" "$target" "$target.bk"
+      else
+        mv "$target" "$target.bk"
+      fi
     else
       printf "${ORANGE}Skipping${NC}  %s\n" "$name"
-      continue
+      return
     fi
   fi
 
   printf " ${GREEN}Linking${NC}  %s\n" "$name"
-  ln -sfn "$f" "$target"
+  if [[ "$DRY_RUN" == true ]]; then
+    printf "${MAGENTA}mkdir -p %q${NC}\n" "$(dirname "$target")"
+    printf "${MAGENTA}ln -sfn %q %q${NC}\n" "$f" "$target"
+  else
+    mkdir -p "$(dirname "$target")"
+    ln -sfn "$f" "$target"
+  fi
+}
+
+# Check if a directory contains only subdirectories (no files)
+has_only_directories() {
+  local dir="$1"
+  local has_files=false
+
+  # Check if directory has any files (not counting .DS_Store)
+  while IFS= read -r -d '' item; do
+    local basename
+    basename="$(basename "$item")"
+    [[ "$basename" = ".DS_Store" ]] && continue
+
+    if [[ ! -d "$item" ]]; then
+      has_files=true
+      break
+    fi
+  done < <(find "$dir" -mindepth 1 -maxdepth 1 -print0)
+
+  [[ "$has_files" = false ]]
+}
+
+# Recursively link a directory or its contents
+# If a directory only contains subdirectories, recurse into them
+# If it contains any files, link the directory itself
+link_item() {
+  local source="$1"
+  local target="$2"
+
+  # If it's a file, link it directly
+  if [[ ! -d "$source" ]]; then
+    link "$source" "$target"
+    return
+  fi
+
+  # It's a directory - check if it only contains subdirectories
+  if has_only_directories "$source"; then
+    # Only subdirectories - recurse into each one
+    find "$source" -mindepth 1 -maxdepth 1 -type d -print0 | while IFS= read -r -d '' subdir; do
+      local subdir_name
+      subdir_name="$(basename "$subdir")"
+      link_item "$subdir" "$target/$subdir_name"
+    done
+  else
+    # Contains files - link the directory itself
+    link "$source" "$target"
+  fi
+}
+
+# Link files from files/* into the home directory
+find "$FILES_DIR" -mindepth 1 -maxdepth 1 -print0 | while IFS= read -r -d '' f; do
+  basename="$(basename "$f")"
+  target="$HOME/$basename"
+
+  # Skip .DS_Store files
+  [[ "$basename" = ".DS_Store" ]] && continue
+
+  link_item "$f" "$target"
 done
 
 # Run the remaining setup scripts
-"$DOTFILES_DIR/script/setup-shell"
-"$DOTFILES_DIR/script/setup-git"
-"$DOTFILES_DIR/script/setup-homebrew"
+if [[ "$DRY_RUN" == true ]]; then
+  printf "${MAGENTA}%q${NC}\n" "$DOTFILES_DIR/script/setup-shell"
+  printf "${MAGENTA}%q${NC}\n" "$DOTFILES_DIR/script/setup-git"
+  printf "${MAGENTA}%q${NC}\n" "$DOTFILES_DIR/script/setup-homebrew"
+else
+  "$DOTFILES_DIR/script/setup-shell"
+  "$DOTFILES_DIR/script/setup-git"
+  "$DOTFILES_DIR/script/setup-homebrew"
+fi
