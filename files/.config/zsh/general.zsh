@@ -2,7 +2,7 @@
 setopt extended_glob
 
 # Add custom executables to PATH
-export PATH="$HOME/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
 
 # Use nvim regardless (if it's installed)
 if command_exists nvim; then
