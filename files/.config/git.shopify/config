@@ -1,0 +1,10 @@
+[user]
+	name = Rylan Polster
+	email = rylan.polster@shopify.com
+[core]
+	editor = nvim
+  pager = bat --style=plain
+[include]
+	path = /Users/rylanpolster/.config/dev/gitconfig
+[init]
+	defaultBranch = main
