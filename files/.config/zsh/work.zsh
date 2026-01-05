@@ -1,5 +1,5 @@
 # Use `cursor` on a Shopify machine, and `code` otherwise.
-local editor_cmd="code"
+editor_cmd="code"
 shopify_machine && editor_cmd="cursor"
 
 # Return if editor is not installed
