@@ -1,6 +1,16 @@
 # Only load these on a Shopify machine
 shopify_machine || return
 
+# Load dev shell config
+if [[ -f /opt/dev/dev.sh ]]; then
+  source /opt/dev/dev.sh
+fi
+
+# Load tec shell config
+if [[ -x "${HOME}/.local/state/tec/profiles/base/current/global/init" ]]; then
+  eval "$("${HOME}/.local/state/tec/profiles/base/current/global/init" zsh)"
+fi
+
 # Usage: dev_tool_current_worktree cmd args...
 dev_tool_current_worktree() {
   local world_trees_root="${HOME}/world/trees/"
@@ -39,5 +49,3 @@ cheat() {
       ]
     }" | jq -r '.choices[0].message.content'
 }
-
-eval "$(wcd --init zsh)"

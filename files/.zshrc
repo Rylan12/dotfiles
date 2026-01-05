@@ -11,7 +11,7 @@ fi
 # All remaining modules will be loaded in alphabetical order in between.
 
 first=(helpers homebrew completions)
-last=(appearance plugins)
+last=(shopify-after appearance plugins)
 
 # Add the `.zsh` extension to the FIRST and LAST arrays
 first_files=(${first[@]/%/.zsh})
