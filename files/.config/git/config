@@ -66,5 +66,3 @@
 	name = Rylan Polster
 	email = rslpolster@gmail.com
 	signingKey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEv9hLutqMpiqxxz96dn5V3NqB/Fqp3O8silaK9TUjC2
-[includeIf "gitdir:~/School/"]
-	path = school.config
