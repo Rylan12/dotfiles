@@ -1,3 +1,6 @@
+# Don't use these on Shopify machines
+shopify_machine && return
+
 # rbenv
 if command_exists rbenv; then
   # TODO: source this directly and update in the background

@@ -14,3 +14,11 @@ os_is_macos() {
 os_is_linux() {
   [[ "$(uname -s)" == "Linux" ]]
 }
+
+personal_machine() {
+  [[ -z "$SHOPIFY_MACHINE" ]]
+}
+
+shopify_machine() {
+  [[ -n "$SHOPIFY_MACHINE" ]]
+}
