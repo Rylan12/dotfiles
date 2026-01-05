@@ -10,7 +10,7 @@ fi
 # Modules listed in the LAST array will be loaded last (in order).
 # All remaining modules will be loaded in alphabetical order in between.
 
-first=(helpers homebrew completions)
+first=(homebrew completions)
 last=(shopify-after appearance plugins)
 
 # Add the `.zsh` extension to the FIRST and LAST arrays
@@ -30,6 +30,9 @@ exclude_pattern="^($(echo "$exclude_pattern" | sed 's/ /|/g'))$" # In case we di
 ZSHDIR="$XDG_CONFIG_HOME/zsh"
 remaining_files=$(find -L "$ZSHDIR" -type f -name "*.zsh" | xargs -n 1 basename | grep -vE "$exclude_pattern")
 remaining_files=(${=remaining_files})
+
+# Source the helpers first
+source "$XDG_CONFIG_HOME/shell/helpers.sh"
 
 # Combine lists in order and load the files
 files=("${first_files[@]}" "${remaining_files[@]}" "${last_files[@]}")

@@ -1,4 +1,5 @@
-# Helpers specifically for use in zsh configuration
+#!/bin/bash
+# Helpers specifically for use in all shell configuration
 
 # Check if a command exists
 command_exists() {

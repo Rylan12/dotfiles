@@ -12,17 +12,42 @@ NC='\033[0m'
 DRY_RUN=false
 if [[ "${1:-}" == "-n" || "${1:-}" == "--dry-run" ]]; then
   DRY_RUN=true
-  printf "${MAGENTA}DRY RUN MODE${NC}\n"
+  printf "${MAGENTA}%s${NC}\n" "DRY RUN MODE"
 fi
 
 # Detect the dotfiles directory based on this script's location
 DOTFILES_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 FILES_DIR="$DOTFILES_DIR/files"
 
+# Source shell helpers
+# shellcheck source=../files/.config/shell/helpers.sh
+source "$DOTFILES_DIR/files/.config/shell/helpers.sh"
+
 link() {
   local f="$1"
   local target="$2"
   local name="${1##"$FILES_DIR/"}"
+  local full_name="$name"
+
+  # If the file ends in .personal, only link it on personal machines (and remove the suffix)
+  if [[ "$name" == *.personal ]]; then
+    name="${name%.personal}"
+    target="${target%.personal}"
+    if ! personal_machine; then
+      printf "${ORANGE}Skipping${NC}  %s (from %s)\n" "$name" "$full_name"
+      return
+    fi
+  fi
+
+  # If the file ends in .shopify, only link it on Shopify machines (and remove the suffix)
+  if [[ "$name" == *.shopify ]]; then
+    name="${name%.shopify}"
+    target="${target%.shopify}"
+    if ! shopify_machine; then
+      printf "${ORANGE}Skipping${NC}  %s (from %s)\n" "$name" "$full_name"
+      return
+    fi
+  fi
 
   if [[ -e "$target" ]]; then
     if [[ "$(readlink -- "$target")" != "$f" ]]; then
@@ -38,7 +63,12 @@ link() {
     fi
   fi
 
-  printf " ${GREEN}Linking${NC}  %s\n" "$name"
+  if [[ "$full_name" == "$name" ]]; then
+    printf " ${GREEN}Linking${NC}  %s\n" "$name"
+  else
+    printf " ${GREEN}Linking${NC}  %s (from %s)\n" "$name" "$full_name"
+  fi
+
   if [[ "$DRY_RUN" == true ]]; then
     printf "${MAGENTA}mkdir -p %q${NC}\n" "$(dirname "$target")"
     printf "${MAGENTA}ln -sfn %q %q${NC}\n" "$f" "$target"
