@@ -15,10 +15,10 @@ os_is_linux() {
   [[ "$(uname -s)" == "Linux" ]]
 }
 
-personal_machine() {
-  [[ -z "$SHOPIFY_MACHINE" ]]
+shopify_machine() {
+  [[ -f "$HOME/.shopify_machine" ]]
 }
 
-shopify_machine() {
-  [[ -n "$SHOPIFY_MACHINE" ]]
+personal_machine() {
+  ! shopify_machine
 }
