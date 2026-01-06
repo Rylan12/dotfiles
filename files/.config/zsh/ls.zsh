@@ -1,5 +1,5 @@
 # Only alias ls if eza is installed
-if command_exists eza; then
+if personal_machine && command_exists eza; then
   alias ls='eza'
 fi
 
