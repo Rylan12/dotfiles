@@ -43,3 +43,5 @@ done
 if [[ "$profile_mode" -ne 0 ]]; then
   zprof
 fi
+
+# Magic comment to satisfy tec agent's shell configuration task: /Users/rylanpolster/.local/state/tec/profiles/base/current/global/init
