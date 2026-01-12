@@ -28,11 +28,6 @@ fi
 # Made file executable
 alias cx='chmod +x'
 
-# Aliases to protect against overwriting
-alias cp='cp -i'
-alias mv='mv -i'
-alias rm='rm -i'
-
 # Make and cd into a directory
 mcd() {
   mkdir "$1" && cd "$1"
