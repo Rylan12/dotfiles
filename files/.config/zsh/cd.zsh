@@ -1,3 +1,11 @@
+alias u='cd ..'
+alias uu='cd ../..'
+alias uuu='cd ../../..'
+alias uuuu='cd ../../../..'
+alias uuuuu='cd ../../../../..'
+alias uuuuuu='cd ../../../../../..'
+alias uuuuuuu='cd ../../../../../../..'
+
 alias cdgr='cd "$(git root)"'
 alias cddf="cd '$HOME/.dotfiles/'"
 alias des="cd '$HOME/Desktop/'"
