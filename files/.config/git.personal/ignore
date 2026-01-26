@@ -57,3 +57,5 @@ Thumbs.db
 # Other #
 #########
 *rsa*
+
+**/.claude/settings.local.json
