@@ -50,6 +50,8 @@ alias -g ...='../..'
 alias -g ....='../../..'
 alias -g .....='../../../..'
 
+alias e='nvim'
+
 # Download youtube video as wav file
 if command_exists yt-dlp; then
   alias ytwav='yt-dlp --extract-audio --audio-format wav'

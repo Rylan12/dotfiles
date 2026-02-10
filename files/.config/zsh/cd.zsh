@@ -27,3 +27,8 @@ if personal_machine; then
   }
   alias cdbl="cd $HOMEBREW_PREFIX/Library/Homebrew"
 fi
+
+# Shopify machine aliases
+if shopify_machine; then
+  alias plans="cd '$HOME/Plans/'"
+fi

@@ -20,3 +20,20 @@ _gt_yargs_completions()
 }
 compdef _gt_yargs_completions gt
 ###-end-gt-completions-###
+
+# Count lines of code changed in current Graphite PR (vs parent branch)
+if command_exists cloc; then
+  gtcloc() {
+    local current_branch parent_branch repo_root
+    repo_root=$(git rev-parse --show-toplevel) || return 1
+    current_branch=$(git branch --show-current)
+    parent_branch=$(gt state | jq -r --arg b "$current_branch" '.[$b].parents[0].ref')
+
+    if [[ -z "$parent_branch" || "$parent_branch" == "null" ]]; then
+      echo "Error: Could not find parent branch for '$current_branch'" >&2
+      return 1
+    fi
+
+    (cd "$repo_root" && cloc --git --diff "$parent_branch" HEAD)
+  }
+fi

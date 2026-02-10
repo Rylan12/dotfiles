@@ -26,6 +26,10 @@ dev_tool_current_worktree() {
   local tool="$1"
   shift
 
+  if (( $# == 0 )); then
+    echo "Running: ${HOME}/world/trees/$worktree/src/areas/tools/dev/bin/$tool"
+  fi
+
   "${HOME}/world/trees/$worktree/src/areas/tools/dev/bin/$tool" $@
 }
 
@@ -49,3 +53,6 @@ cheat() {
       ]
     }" | jq -r '.choices[0].message.content'
 }
+
+alias b='tec build'
+alias r='tec run --'
