@@ -56,3 +56,21 @@ cheat() {
 
 alias b='tec build'
 alias r='tec run --'
+
+# Auto-set iTerm2 tab title from worldpath
+_worldpath_tab_title() {
+  local title="$(worldpath --spare)"
+  if [[ -n "$_tab_suffix" ]]; then
+    title="${title} - ${_tab_suffix}"
+  fi
+  echo -ne "\e]0;${title}\a"
+}
+
+# Override rename to append a suffix to worldpath instead
+rename() {
+  _tab_suffix="$*"
+  _worldpath_tab_title
+}
+
+autoload -Uz add-zsh-hook
+add-zsh-hook chpwd _worldpath_tab_title

@@ -55,3 +55,8 @@ function manp() {
   done
 }
 compdef _man manp
+
+# Set the iTerm2 tab title
+rename() {
+  echo -ne "\e]0;$*\a"
+}
