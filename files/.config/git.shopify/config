@@ -10,5 +10,3 @@
 	defaultBranch = main
 [maintenance]
 	repo = /Users/rylanpolster/world/trees/root/src
-	repo = /Users/rylanpolster/world/trees/world-vscode/src
-	repo = /Users/rylanpolster/world/trees/parallel/src
