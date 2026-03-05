@@ -3,10 +3,21 @@
 	email = rylan.polster@shopify.com
 [core]
 	editor = nvim
-  pager = bat --style=plain
+	pager = bat --style=plain
 [include]
 	path = /Users/rylanpolster/.config/dev/gitconfig
 [init]
 	defaultBranch = main
 [maintenance]
 	repo = /Users/rylanpolster/world/trees/root/src
+[commit]
+	gpgSign = true
+[rerere]
+	enabled = true
+	autoUpdate = true
+[tag]
+	gpgSign = true
+[diff]
+	colorMoved = true
+	mnemonicPrefix = true
+	renames = copies

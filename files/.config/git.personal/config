@@ -22,10 +22,10 @@
 	helper = /usr/local/share/gcm-core/git-credential-manager
 [diff]
 	algorithm = histogram
-	colorMoved = plain
+	colorMoved = true
 	guitool = vscode
 	mnemonicPrefix = true
-	renames = true
+	renames = copies
 	tool = nvimdiff
 [difftool "vscode"]
 	cmd = code --wait --diff $LOCAL $REMOTE
