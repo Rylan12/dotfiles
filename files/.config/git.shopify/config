@@ -1,23 +1,23 @@
-[user]
-	name = Rylan Polster
-	email = rylan.polster@shopify.com
+[commit]
+	gpgSign = true
 [core]
 	editor = nvim
 	pager = bat --style=plain
-[include]
-	path = /Users/rylanpolster/.config/dev/gitconfig
+[diff]
+	colorMoved = true
+	mnemonicPrefix = true
+	renames = copies
 [init]
 	defaultBranch = main
 [maintenance]
 	repo = /Users/rylanpolster/world/trees/root/src
-[commit]
-	gpgSign = true
 [rerere]
 	enabled = true
 	autoUpdate = true
 [tag]
 	gpgSign = true
-[diff]
-	colorMoved = true
-	mnemonicPrefix = true
-	renames = copies
+[user]
+	name = Rylan Polster
+	email = rylan.polster@shopify.com
+[include]
+	path = /Users/rylanpolster/.config/dev/gitconfig
