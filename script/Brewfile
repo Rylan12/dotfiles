@@ -1,4 +1,6 @@
-brew "pure"
+tap "rylan12/personal"
+
+brew "rylan12/personal/rslprompt"
 brew "zsh-autosuggestions"
 brew "zsh-syntax-highlighting"
 brew "zsh-vi-mode"
