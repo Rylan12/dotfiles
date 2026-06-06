@@ -1,8 +1,8 @@
-tap "rylan12/personal"
+tap 'rylan12/personal', trusted: true
 
-brew "rylan12/personal/rslprompt"
-brew "zsh-autosuggestions"
-brew "zsh-syntax-highlighting"
-brew "zsh-vi-mode"
+brew 'rylan12/personal/rslprompt'
+brew 'zsh-autosuggestions'
+brew 'zsh-syntax-highlighting'
+brew 'zsh-vi-mode'
 
-cask "font-monaspace"
+cask 'font-monaspace'
