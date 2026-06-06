@@ -1,0 +1,8 @@
+{
+  "trustedtaps": [
+    "rylan12/personal"
+  ],
+  "trustedformulae": [
+    "teamookla/speedtest/speedtest"
+  ]
+}
