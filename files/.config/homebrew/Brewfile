@@ -1,91 +1,145 @@
 tap "homebrew/cask"
-tap "homebrew/command-not-found"
 tap "homebrew/core"
-tap "homebrew/test-bot"
-tap "rylan12/personal"
+tap "rylan12/personal", trusted: true
 tap "teamookla/speedtest"
+# Static analysis and lint tool, for (ba)sh scripts
 brew "shellcheck"
+# Static checker for GitHub Actions workflow files
 brew "actionlint"
+# Simple system information tool written in Python
 brew "archey4"
+# Download with resuming and segmented downloading
 brew "aria2"
-brew "m4"
+# Clone of cat(1) with syntax highlighting and Git integration
 brew "bat"
+# Bash scripts that integrate bat with various command-line tools
 brew "bat-extras"
+# Resource monitor. C++ version and continuation of bashtop and bpytop
+brew "btop"
+# GNU File, Shell, and Text utilities
 brew "coreutils"
+# Get a file from an HTTP, HTTPS or FTP server
 brew "curl"
+# Modern, maintained replacement for ls
 brew "eza"
+# Simple, fast and user-friendly alternative to find
 brew "fd"
+# Play, record, convert, and stream select audio and video codecs
 brew "ffmpeg"
+# Command-line fuzzy finder written in Go
 brew "fzf"
+# GitHub command-line tool
 brew "gh"
+# Distributed revision control system
 brew "git"
+# Small git utilities
 brew "git-extras"
+# GNU version of the tar archiving utility
+brew "gnu-tar"
+# GNU Privacy Guard (OpenPGP)
 brew "gnupg"
-brew "htop"
+# Command-line benchmarking tool
 brew "hyperfine"
+# Lightweight and flexible command-line JSON processor
 brew "jq"
+# Simple terminal UI for git commands
 brew "lazygit"
+# Pager program similar to more
 brew "less"
-brew "libedit"
-brew "llvm"
+# Package manager for the Lua programming language
+brew "luarocks"
+# Utility for directing compilation
 brew "make"
+# Polyglot runtime manager (asdf rust clone)
+brew "mise"
+# Run multiple commands in parallel
+brew "mprocs"
+# Ambitious Vim-fork focused on extensibility and agility
 brew "neovim"
-brew "pkgconf"
-brew "nodenv"
+# OCI Registry As Storage
 brew "oras"
+# Pinentry for GPG on Mac
 brew "pinentry-mac"
-brew "postgresql@14", restart_service: :changed
-brew "pure"
-brew "pyenv"
-brew "pyenv-virtualenv"
-brew "rbenv"
+# Object-relational database system
+brew "postgresql@18", restart_service: :changed
+# Search tool like grep and The Silver Searcher
 brew "ripgrep"
+# Autoformat shell script source code
 brew "shfmt"
-brew "skopeo"
+# Terminal multiplexer
 brew "tmux"
+# Display directories as trees (with optional color/HTML output)
 brew "tree"
+# Quickly manage and navigate project directories for experiments
+brew "try"
+# Syntax-aware linter for prose
 brew "vale"
+# Executes a program periodically, showing output fullscreen
 brew "watch"
+# Watch files and take action when they change
+brew "watchman"
+# Internet file retriever
 brew "wget"
+# Show the current WiFi network password
 brew "wifi-password"
+# Feature-rich command-line audio/video downloader
 brew "yt-dlp"
-brew "zoxide"
+# Find security issues in GitHub Actions setups
+brew "zizmor"
+# UNIX shell (command interpreter)
 brew "zsh"
-brew "zsh-autopair"
+# Fish-like fast/unobtrusive autosuggestions for zsh
 brew "zsh-autosuggestions"
+# Fish shell like syntax highlighting for zsh
 brew "zsh-syntax-highlighting"
+# Better and friendly vi(vim) mode plugin for ZSH
 brew "zsh-vi-mode"
-brew "rylan12/personal/evalcache", args: ["HEAD"]
-brew "rylan12/personal/zsh-git-escape-magic", args: ["HEAD"]
-brew "teamookla/speedtest/speedtest"
+# Fast, async zsh shell prompt
+brew "rylan12/personal/rslprompt"
+# Ookla Speedtest
+brew "teamookla/speedtest/speedtest", trusted: true
+# Command-line interface for 1Password
 cask "1password-cli"
+# Collection of apps and services for photography, design, video, web, and UX
 cask "adobe-creative-cloud"
-cask "arduino-ide"
+# Records audio from any application
 cask "audio-hijack"
-cask "balenaetcher"
-cask "discord"
-cask "disk-inventory-x"
-cask "docker"
+# App to build and share containerised applications and microservices
+cask "docker-desktop"
 cask "font-monaspace"
+cask "font-monaspace-nf"
+# GIT client
 cask "fork"
 cask "git-credential-manager-core"
+# Git client for simultaneous branches on top of your existing workflow
 cask "gitbutler"
+# Desktop client for GitHub repositories
 cask "github"
+# Web browser
 cask "google-chrome"
+# Client for the Google Drive storage service
+cask "google-drive"
+# Terminal emulator as alternative to Apple's Terminal app
 cask "iterm2"
-cask "jetbrains-toolbox"
-cask "mactex"
-cask "notion"
-cask "onyx"
-cask "orka"
+# Knowledge base that works on top of a local folder of plain text Markdown files
+cask "obsidian"
+# VPN client
 cask "private-internet-access"
+# Imaging utility to install operating systems to a microSD card
 cask "raspberry-pi-imager"
+# Control your tools with a few keystrokes
 cask "raycast"
+# Team communication and collaboration software
 cask "slack"
+# Video game digital distribution service
 cask "steam"
+# Mux and tag mp4 files
+cask "subler"
+# Open-source code editor
 cask "visual-studio-code"
-cask "vlc"
+# Video communication and virtual meeting platform
 cask "zoom"
+# Collect, organise, cite, and share research sources
 cask "zotero"
 vscode "davidanson.vscode-markdownlint"
 vscode "eamodio.gitlens"
@@ -93,34 +147,30 @@ vscode "editorconfig.editorconfig"
 vscode "espressif.esp-idf-extension"
 vscode "foxundermoon.shell-format"
 vscode "github.codespaces"
-vscode "github.copilot"
-vscode "github.copilot-chat"
 vscode "github.vscode-github-actions"
 vscode "github.vscode-pull-request-github"
+vscode "gruntfuggly.todo-tree"
 vscode "janisdd.vscode-edit-csv"
 vscode "kaiwood.endwise"
 vscode "koichisasada.vscode-rdbg"
 vscode "lorankloeze.ruby-rubocop-revived"
 vscode "mechatroner.rainbow-csv"
-vscode "ms-python.debugpy"
-vscode "ms-python.isort"
-vscode "ms-python.python"
-vscode "ms-python.vscode-pylance"
 vscode "ms-vscode-remote.remote-containers"
 vscode "ms-vscode-remote.remote-ssh"
 vscode "ms-vscode-remote.remote-ssh-edit"
 vscode "ms-vscode.cmake-tools"
+vscode "ms-vscode.cpp-devtools"
 vscode "ms-vscode.cpptools"
 vscode "ms-vscode.cpptools-extension-pack"
 vscode "ms-vscode.cpptools-themes"
 vscode "ms-vscode.makefile-tools"
 vscode "ms-vscode.remote-explorer"
-vscode "oderwat.indent-rainbow"
 vscode "pkief.material-icon-theme"
 vscode "shopify.ruby-extensions-pack"
 vscode "shopify.ruby-lsp"
 vscode "sorbet.sorbet-vscode-extension"
 vscode "streetsidesoftware.code-spell-checker"
 vscode "timonwong.shellcheck"
-vscode "visualstudioexptteam.intellicode-api-usage-examples"
-vscode "visualstudioexptteam.vscodeintellicode"
+vscode "usernamehw.errorlens"
+npm "corepack"
+npm "pnpm"
